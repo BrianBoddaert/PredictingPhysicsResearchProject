@@ -12,7 +12,7 @@ Many games make use of physics and physics engines. Many of which use pseudo rea
 ## Implementation  ##
 
 ### Calculating velocity and direction  ###
-I created a unity project to see if we can predict the unity physics engine. I started this off by creating a "SmartAI" character making use of predictions and "DumbAI" characters playing the role of simple hostiles. I made the simple hostiles shoot projectiles at the SmartAI. The SmartAI does not see these projectiles until they are within a radius indicated by the circle surrounding him.
+I created a unity project to see if I can predict Unity's physics. I started this off by creating a "SmartAI" character making use of predictions and "DumbAI" characters playing the role of a simple hostile. I made the simple hostiles shoot projectiles at the SmartAI. The SmartAI does not see these projectiles until they are within a radius indicated by the circle surrounding him.
 
 ```C#
         for (int i = 0; i < projectilesInScene.Length; i++)
@@ -77,8 +77,30 @@ The smartAI calculates the direction and velocity of the projectile by comparing
 
 *SmartAI moving aside when in the trajectory of an incoming projectile code.*
 
-### Predicting trajectory with gravity and drag  ###
 
+### Predicting trajectory with gravity and drag  ###
+To predict the physics of an object with gravity and drag, we first write down / calculate the forces applied to our object.
+
+![image](https://user-images.githubusercontent.com/35961897/103570160-dc37c400-4ec8-11eb-972f-684247f13a9b.png)
+
+*The gravitational acceleration, just like in our real world, is -9.81 * s^2. Air resistance is done by Unity for us, and velocity is speed / time.*
+
+The next step was to apply my formulas to the position where the projectile will spawn to predict the trajectory.
+This I did a set amount of times so I could connect the dots and visualize the trajectory.
+
+```C#
+        for (int i = 0; i < HowManyTimesWeRepeatTheProcess; ++i)
+        {
+            velocity += gravitationalAcceleration;
+            velocity *= friction;
+            pos += velocity;
+            results[i] = pos;
+        }
+```
+*Applying our increments*
+
+
+### Predicting bounce ###
 
 ## Difficulties ##
 ##  Result ##
