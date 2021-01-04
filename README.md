@@ -1,4 +1,4 @@
-### Predicting Physics Research Project ###
+# Predicting Physics Research Project #
 
 
 
@@ -10,6 +10,8 @@ Many games make use of physics and physics engines. Many of which use pseudo rea
 *An example of this would be angry birds, predicting the trajectory of the projectiles.*
 
 ## Implementation  ##
+
+### Calculating velocity and direction  ###
 I created a unity project to see if we can predict the unity physics engine. I started this off by creating a "SmartAI" character making use of predictions and "DumbAI" characters playing the role of simple hostiles. I made the simple hostiles shoot projectiles at the SmartAI. The SmartAI does not see these projectiles until they are within a radius indicated by the circle surrounding him.
 
 ```C#
@@ -46,7 +48,11 @@ The variables of the projectile are of course made private. The SmartAI can not 
 
 ![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/35961897/103555921-4d6b7d00-4eb1-11eb-9afb-aa3a9991f6b5.gif)
 
-*SmartAI moving aside whenever she's in the trajectory of incoming projectiles.*
+*SmartAI moving aside when in the trajectory of an incoming projectile example (1/2).*
+
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/35961897/103561279-80197380-4eb9-11eb-80ea-e45c63244f36.gif)
+
+*SmartAI moving aside when in the trajectory of an incoming projectile example (2/2).*
 
 The smartAI calculates the direction and velocity of the projectile by comparing its position in the last frame to its position now, then uses a spherecast (or raycasts in the case of a square projectile). Then sets its direction to move aside and prevent the projectile from hitting her.
 
@@ -68,6 +74,10 @@ The smartAI calculates the direction and velocity of the projectile by comparing
        direction = rot * transform.forward // Dodge the projectile
    }
 ```
+
+*SmartAI moving aside when in the trajectory of an incoming projectile code.*
+
+### Predicting trajectory with gravity and drag  ###
 
 
 ## Difficulties ##
