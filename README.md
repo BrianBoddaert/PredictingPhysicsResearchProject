@@ -112,7 +112,7 @@ This I did a set amount of times so I could connect the dots and visualize the t
 
 (*Applying our increments*)
 
-Now, all that was left to do is was check and see if everything checks out and then to demonstrate the result. I did this by spawning a projectile with a set velocity and rigidbody. I connected the "results" positions using Unity's debugging features and I also added the ability to change the velocity and direction at real time.
+Now, all that was left to do is was check and see if everything checks out and then to demonstrate the result. I did this by spawning a projectile with a set velocity and rigidbody. I connected the resulting positions of the previously predicted trajectory using Unity's debugging features and I added the ability to change the velocity and direction at real time.
 
 ![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/35961897/103575211-a8ad6780-4ed1-11eb-84db-7545e71a03e1.gif)
 
