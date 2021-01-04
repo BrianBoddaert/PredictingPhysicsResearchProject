@@ -120,14 +120,16 @@ Now, all that was left to do is was check and see if everything checks out and t
 
 ### Predicting bounce ###
 
-The next thing I wanted to tackle was predicting a bounce result. I was able to predict the bounce direction by using Vector3.reflect(), and applying a physics material to the projectile (Without one the projectile has no bounce).
+The next thing I wanted to tackle was predicting a bounce result. I was able to predict the bounce direction by using Vector3.reflect() and applying a physics material to the projectile (Without one the projectile has no bounce).
 
+![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/35961897/103587423-7f97d180-4ee7-11eb-95ed-de7f456a9fe0.gif)
 
+(*Predicted bounce direction*)
 
+This covers the direction, there's is however more to consider when you deal with a bounce, such as the velocity falloff from a part of the kinetic energy turning into angular energy and not to forget friction. For this 3D elastic collision formulas can be applied which of course also depend on the shape of the colliding objects.
 
 ## Difficulties ##
-The next thing I wanted to tackle was predicting a bounce result. I was able to predict the resulting direction from using a raycast and using the hit normal in Vector3.reflect(), this however did not create the wished result. This bounce would be an ideal result that you would see with for instance a basketbal, but when I fired my test projectile at a wall, it had no bounce whatsoever. 
+When it came to predicting the velocity of a projectile after bouncing off of a wall, I was able to predict the resulting direction from using a raycast and using the hit normal in Vector3.reflect(), this however did not create the wished result. This bounce would be an ideal result that you would see with for instance a basketbal, but when I fired my test projectile at a wall, it had no bounce whatsoever. After some digging I managed to find out I needed to put a physics material on the projectile. Now the bounce direction was correct but there was no velocity fall off. I looked into 3D Elastic collision but it was tricky to find anything but sphere to sphere collisions. While sphere to box collision was what I was looking for.
 
-The next thing I wanted to tackle was predicting a bounce result. Which proved trickier than I initially thought. When bouncing against a static wall a part of the velocity
 ##  Result ##
 ## Conclusion ##
