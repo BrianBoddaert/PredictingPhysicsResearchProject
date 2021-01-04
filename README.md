@@ -112,13 +112,22 @@ This I did a set amount of times so I could connect the dots and visualize the t
 
 (*Applying our increments*)
 
+Now, all that was left to do is was check and see if everything checks out and then to demonstrate the result. I did this by spawning a projectile with a set velocity and rigidbody. I connected the "results" positions using Unity's debugging features and I also added the ability to change the velocity and direction at real time.
+
 ![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/35961897/103575211-a8ad6780-4ed1-11eb-84db-7545e71a03e1.gif)
 
 (*Result*)
 
-
 ### Predicting bounce ###
 
+The next thing I wanted to tackle was predicting a bounce result. I was able to predict the bounce direction by using Vector3.reflect(), and applying a physics material to the projectile (Without one the projectile has no bounce).
+
+
+
+
 ## Difficulties ##
+The next thing I wanted to tackle was predicting a bounce result. I was able to predict the resulting direction from using a raycast and using the hit normal in Vector3.reflect(), this however did not create the wished result. This bounce would be an ideal result that you would see with for instance a basketbal, but when I fired my test projectile at a wall, it had no bounce whatsoever. 
+
+The next thing I wanted to tackle was predicting a bounce result. Which proved trickier than I initially thought. When bouncing against a static wall a part of the velocity
 ##  Result ##
 ## Conclusion ##
