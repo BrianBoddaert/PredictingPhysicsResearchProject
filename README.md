@@ -3,7 +3,7 @@
 
 
 ## What is the topic? ## 
-Many games make use of physics and physics engines. Many of which use pseudo realistic real world physics, spanning from elastic collisions in pool games to gravity and other forces in open world games. Often you'll see that predicting these physics plays an important role in games, we can do this by using the same formulas that were used to program them in the first place.
+Many games make use of physics and physics engines. Many of which use pseudo realistic real world physics, spanning from elastic collisions in pool games to gravity and other forces in open world games. Often you'll see that predicting these physics plays an important role in games, we can do this by using the same formulas that were used to program them in the first place. (The one's that also apply in the real world.)
 
 ![image](https://spaceapetech.files.wordpress.com/2016/05/angrybirdstrajectory.png?w=676)
 
@@ -132,4 +132,26 @@ This covers the direction, there's is however more to consider when you deal wit
 When it came to predicting the velocity of a projectile after bouncing off of a wall, I was able to predict the resulting direction from using a raycast and using the hit normal in Vector3.reflect(), this however did not create the wished result. This bounce would be an ideal result that you would see with for instance a basketbal, but when I fired my test projectile at a wall, it had no bounce whatsoever. After some digging I managed to find out I needed to put a physics material on the projectile. Now the bounce direction was correct but there was no velocity fall off. I looked into 3D Elastic collision but it was tricky to find anything but sphere to sphere collisions. While sphere to box collision was what I was looking for.
 
 ##  Result ##
-## Conclusion ##
+With predicting physics and my research done I was able to predict trajectories of objects that use game engine physics. Also without access to any variables but the current transform, I was able to calculate the direction in two frames. If I had more resources I wpuld have made an AI dodging every bullet coming at him (as long as his speed and the radius of his field of view isn't too low). This could make for excellent AI in games. (Such as OpenAI). What I learned could make intriguing game concepts such as self shooting sentry guns that will (almost) never miss, AIs that are incredibly overpowered in video games or shockingly realistic AIs.
+
+## Conclusion 
+Next steps to follow up on this research would be perfecting the bounce velocity and predicting physics the other way around, where one can enter a location and get a trajectory to that point instead of entering a velocity and seeing where the projectile would end up.
+
+I definitely learned a lot and was happy to learn all this, I think this will help me much in my future endeavors of becoming a game developer. I hope my research can help others by summarizing all this.
+
+
+## References ##
+
+https://tech.spaceapegames.com/2016/07/05/trajectory-prediction-with-unity-physics/
+
+https://answers.unity.com/questions/1349122/predicting-projectile-path-after-bouncing-off-phys.html
+
+https://courses.lumenlearning.com/boundless-physics/chapter/collisions/#:~:text=If%20two%20particles%20are%20involved,m%201%20)%20v%202%20i%20.
+
+https://atmos.illinois.edu/courses/atmos100/userdocs/3Dcollisions.html
+
+https://forum.unity.com/threads/how-to-predict-the-physics-simple-sphere-boucing-on-walls.91652/
+
+https://en.wikipedia.org/wiki/Drag_(physics)
+
+https://www.plasmaphysics.org.uk/collision3d.htm
