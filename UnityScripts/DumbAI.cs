@@ -12,11 +12,6 @@ public class DumbAI : MonoBehaviour
 
     private float shootPase = .4f;
     private float timer = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -39,17 +34,4 @@ public class DumbAI : MonoBehaviour
         GameObject newBullet = Instantiate(projectile, transform.position + direction * bulletSpawnOffset, rotation);
         Destroy(newBullet, 10);
     }
-    //void GenerateRandomDestination()
-    //{
-    //    Vector3 currentPos = transform.position;
-    //    Vector3 randomPos = new Vector3(currentPos.x + Random.Range(-10.0f, 10.0f), 0, currentPos.z + Random.Range(-10.0f, 10.0f));
-    //    destination = randomPos;
-    //}
-
-    //void MoveToDestination()
-    //{
-        
-    //    transform.position += Vector3.right;
-    //}
-
 }

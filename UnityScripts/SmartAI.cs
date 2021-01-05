@@ -30,9 +30,11 @@ public class SmartAI : MonoBehaviour
     void Update()
     {
         direction = new Vector3(0, 0, 0);
+        PredictTrajectories();
         UpdateProjectilesInViewRange();
-        //SetDirectionAccordingly();
         transform.position += direction * (speed * Time.deltaTime);
+       
+
     }
 
     void UpdateProjectilesInViewRange()
@@ -43,7 +45,7 @@ public class SmartAI : MonoBehaviour
         {
             SpottedProjectileInformation listedProjectile = new SpottedProjectileInformation();
 
-            float distance = Mathf.Abs((projectilesInScene[i].transform.position - transform.position).magnitude);
+            float distance = (projectilesInScene[i].transform.position - transform.position).magnitude;
 
             if (IsProjectileAlreadyInList(projectilesInScene[i], ref listedProjectile))// Check if already listed
             {
@@ -52,77 +54,52 @@ public class SmartAI : MonoBehaviour
                    projectilesInViewRange.Remove(listedProjectile);
                     continue;
                 }
-
-                PredictTrajectory(ref listedProjectile);
             }
             else if (distance <= viewRange)  // Newly spotted projectile
             {
                  SpottedProjectileInformation projectile = new SpottedProjectileInformation();
                  projectile.gameObject = projectilesInScene[i];
                  projectile.previousPosition = projectilesInScene[i].transform.position;
-                // projectile.priority = 0;
                  projectile.width = projectile.gameObject.transform.localScale.x;
                  projectile.halfWidth = projectile.gameObject.transform.localScale.x / 2;
-                 //Debug.Log("Object spotted");
                  projectilesInViewRange.Add(projectile); // Save within list   
             }
 
         }
     }
-
-    //void SetDirectionAccordingly()
-    //{
-    //    for (int i = 0; i < projectilesInViewRange.Count; i++)
-    //    {
-    //        SpottedProjectileInformation projectile = projectilesInViewRange[i];
-
-    //        Vector3 projectilePosition = projectile.gameObject.transform.position;
-    //        //  Vector3 projectileDistanceTravelledPerFrame = projectilePosition - projectile.previousPosition;
-
-
-
-
-
-
-
-
-    //    }
-
-    //}
-
-    void PredictTrajectory(ref SpottedProjectileInformation projectile)
+    void PredictTrajectories()
     {
-        Vector3 projectilePosition = projectile.gameObject.transform.position;
-        Vector3 projectileDistanceTravelledPerFrame = projectilePosition - projectile.previousPosition;
-
-        projectile.direction = projectileDistanceTravelledPerFrame.normalized;
-        projectile.velocity = projectileDistanceTravelledPerFrame.magnitude;
-
-        // projectile.priority = Mathf.Abs((projectile.gameObject.transform.position - transform.position).magnitude);
-        // set to distance between smartAI and projectile.
-        projectile.previousPosition = projectile.gameObject.transform.position;
-
-        LayerMask mask = LayerMask.GetMask("SmartAI");
-        RaycastHit hitInfo;
-
-        Debug.DrawRay(projectilePosition - projectile.direction * projectile.halfWidth, projectile.direction * 50, new Color(1, 0, 0), 1);
-
-        debugCenter = projectilePosition;
-        debugRadius = projectile.halfWidth;
-        debugDirection = projectile.direction;
-        debugWidth = projectile.width;
-
-        if (Physics.SphereCast(projectilePosition, projectile.halfWidth, projectile.direction, out hitInfo, 50,mask))
+        for (int i = 0; i < projectilesInViewRange.Count; i++) // Loop through all projectilesInScene in the scene
         {
-            Debug.Log(projectile.gameObject.name);
-            Quaternion rot = Quaternion.LookRotation(projectile.direction);
-            rot *= Quaternion.Euler(0,90,0);
-            Vector3 dir = rot * transform.forward;
-            //Vector3 dir = projectile.gameObject.transform.right;
-            direction = dir;
+            SpottedProjectileInformation projectile = projectilesInViewRange[i];
+
+            Vector3 projectilePosition = projectile.gameObject.transform.position;
+            Vector3 projectileDistanceTravelledPerFrame = projectilePosition - projectile.previousPosition;
+
+            projectile.direction = projectileDistanceTravelledPerFrame.normalized;
+            projectile.velocity = projectileDistanceTravelledPerFrame.magnitude;
+
+            projectile.previousPosition = projectilePosition;
+
+            LayerMask mask = LayerMask.GetMask("SmartAI");
+            RaycastHit hitInfo;
+
+            Debug.DrawRay(projectilePosition - projectile.direction * projectile.halfWidth, projectile.direction * 50, new Color(1, 0, 0), 1);
+
+            debugCenter = projectilePosition;
+            debugRadius = projectile.halfWidth;
+            debugDirection = projectile.direction;
+            debugWidth = projectile.width;
+
+            if (Physics.SphereCast(projectilePosition, projectile.halfWidth, projectile.direction, out hitInfo, 50, mask))
+            {
+                Debug.Log(projectile.gameObject.name);
+                Quaternion rot = Quaternion.LookRotation(projectile.direction);
+                rot *= Quaternion.Euler(0, 90, 0);
+                Vector3 dir = rot * transform.forward;
+                direction = dir;
+            }
         }
-
-
     }
 
     bool IsProjectileAlreadyInList(GameObject o, ref SpottedProjectileInformation listedProjectile)
