@@ -3,7 +3,7 @@
 
 
 ## What is the topic? ## 
-Many games make use of physics and physics engines. Many of which use pseudo realistic real world physics, spanning from elastic collisions in pool games to gravity and other forces in open world games. Often you'll see that predicting these physics plays an important role in games, we can do this by using the same formulas that were used to program them in the first place. (The one's that also apply in the real world.)
+Many games make use of physics and physics engines. Many of which use pseudo realistic real world physics, spanning from elastic collisions in pool games to gravity and other forces in open world games. Often you'll see that predicting these physics plays an important role in games, we can do this by using the same formulas that were used to program them in the first place. (The ones that also apply in the real world.)
 
 ![image](https://spaceapetech.files.wordpress.com/2016/05/angrybirdstrajectory.png?w=676)
 
